@@ -79,7 +79,7 @@ def play_round(positions, unused, m):
     return wrong_spots
 
 def is_end(words):
-    if len(words) == 1 and i < 6:
+    if len(words) == 1:
         print("Congratulations! It looks like you won!")
         return True
     if len(words) < 1:
