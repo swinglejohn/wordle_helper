@@ -2,7 +2,7 @@ import sys
 import random
 
 def process_input(input):
-    for i in range(len(input)):
+    for i in range(len(input)-1): # -1 because the last character doesn't have a \n
         input[i] = input[i][:-1] # cuts off newline character
     return input
 
@@ -93,9 +93,11 @@ def is_end(words):
 
 # read in the wordlists
 answers = read_file("wordle-answers-alphabetical.txt")
+print(answers[:5] + answers[-5:])
 allowed = read_file("wordle-allowed-guesses.txt")
-print(len(answers))
-print(len(allowed))
+print(allowed[:5] + allowed[-5:])
+#print(len(answers))
+#print(len(allowed))
 answers.extend(allowed)
 words = answers
 random.shuffle(words)
