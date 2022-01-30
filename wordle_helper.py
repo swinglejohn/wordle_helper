@@ -93,9 +93,7 @@ def is_end(words):
 
 # read in the wordlists
 answers = read_file("wordle-answers-alphabetical.txt")
-print(answers[:5] + answers[-5:])
 allowed = read_file("wordle-allowed-guesses.txt")
-print(allowed[:5] + allowed[-5:])
 #print(len(answers))
 #print(len(allowed))
 answers.extend(allowed)
@@ -115,6 +113,7 @@ print("Good Luck!\n")
 
 positions = ['.' for i in range(5)]
 unused = set()
+# The loop only iterates 6 times because it can't help you after your last guess
 for i in range(1, 6):
     if is_end(words):
         break
