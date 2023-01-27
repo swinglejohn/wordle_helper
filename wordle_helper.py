@@ -122,7 +122,7 @@ for i in range(1, 6):
     words = process_words(words, positions, unused, wrong_spots)
     print("Note: The optimal next guess may not be one of the remaining possible words")
     print("There are only " + str(len(words)) + " possible words left!")
-    n_show = 25
+    n_show = 50
     print("The first " + str(min(n_show, len(words))) + " are:")
     print(words[:n_show], end="\n\n")
 
