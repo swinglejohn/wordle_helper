@@ -132,6 +132,23 @@ def parse_position_constraints(input_str):
     
     return constraints
 
+hvowels = "uy"
+evowels = "aeio"
+# this is a heuristic I'm designing. I sort by this to make the manual choosing easier for "Don't Wordle"
+# it's probably the opposite of what you'd want for real Wordle
+def score_word(word: str):
+    
+    vowel_count = sum(word.count(c) for c in evowels + hvowels)
+    unique_hvowel_count = len(set(word) & set(hvowels))
+    unique_evowel_count = len(set(word) & set(evowels))
+
+    unique_letters = len(set(word))
+
+    # you want to minimize these for "Don't Wordle"
+    # I'm just using these for sorting and am just guessing at the weights
+    score = 11*unique_hvowel_count + 10*unique_evowel_count + unique_letters + vowel_count
+    return score
+
 def main():
     # Load word lists
     print("Loading word lists...")
@@ -188,16 +205,18 @@ def main():
             filtered_words = filter_by_position_constraints(filtered_words, position_dict)
             print(f"After position constraints: {len(filtered_words)} words")
         
+        filtered_words = sorted([(score_word(w), w) for w in filtered_words])
         print(f"\nFINAL RESULT: {len(filtered_words)} matching words")
         
-        if len(filtered_words) <= 50:
-            print("\nMatching words:")
-            for word in filtered_words:
-                print(word)
+        N = 500
+        if len(filtered_words) <= N:
+            print(f"\nMatching words ({len(filtered_words)}):")
+            for score, word in filtered_words:
+                print(f"{word} ({score})")
         else:
-            print(f"\nToo many words to display. First 20:")
-            for word in filtered_words[:20]:
-                print(word)
+            print(f"\nToo many words to display. First {N}:")
+            for score, word in filtered_words[:N]:
+                print(f"{word} ({score})")
             print("...")
 
 if __name__ == "__main__":

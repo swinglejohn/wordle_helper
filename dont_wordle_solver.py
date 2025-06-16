@@ -191,11 +191,11 @@ def main():
             
         # Get new constraints from user
         print("\nEnter new constraints from your last guess:")
-        print("Format: g0a,y1b,x2c (g=green, y=yellow, x=gray, position, letter)")
-        print("Example: g0s,y1a,x2t,x3e,x4r")
-        print("Leave empty if no new constraints:")
+        print("Green/Yellow format: g0a,y1b (g=green, y=yellow, position, letter)")
+        print("Example: g0s,y1a")
+        print("Leave empty if no green/yellow constraints:")
         
-        constraint_input = get_user_input("Constraints:")
+        constraint_input = get_user_input("Green/Yellow constraints:")
         
         if constraint_input:
             constraints = parse_constraints(constraint_input)
@@ -206,7 +206,17 @@ def main():
                 elif constraint_type == 'y':
                     state.add_yellow(letter, position)
                     print(f"Added yellow: {letter} not at position {position}")
-                elif constraint_type == 'x':
+        
+        # Get gray letters separately
+        print("\nEnter gray letters (just the letters, no position needed):")
+        print("Example if a, b, c are gray: abc")
+        print("Leave empty if no gray letters:")
+        
+        gray_input = get_user_input("Gray letters:")
+        
+        if gray_input:
+            for letter in gray_input.lower():
+                if letter.isalpha():
                     state.add_gray(letter)
                     print(f"Added gray: {letter}")
         
