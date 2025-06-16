@@ -22,7 +22,11 @@ Be careful! If you accidentally enter the Wordle word, the game is over even if 
 """
 
 """
-IMPORTANT - Algorithm limitations
+IMPORTANT
+
+dont_wordle_greedy_max.py is a much better solver for this game.
+
+Algorithm limitations
 
 - It only goes one layer deep (greedy)
 - It assumes every letter in a guess is a miss (grey) and ignores the possibility of yellows and greens

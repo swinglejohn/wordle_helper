@@ -16,6 +16,8 @@ While playing Wordle fill in what you know about the word according to the promp
 Happy wordling!
 
 ## Don't Wordle
-The rules for "Don't Wordle" are at the top of `dont_wordle_solver.py`, which is actually a very limited algorithm and not a full solver
+The dont_wordle_greedy_max.py is the best solver for "Don't Wordle" so far in this repo.
+
+The rules for "Don't Wordle" are at the top of `dont_wordle_solver.py`, which is much more limited.
 
 You will probably also find `advanced_word_finder.py` useful for this game.
